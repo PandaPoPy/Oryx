@@ -7,17 +7,14 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="/static/migrator/img/favicon.ico">
+        {% load static %}
+        <link rel="icon" href="{% static 'migrator/img/favicon.ico' %}">
 
         <!-- Bootstrap core CSS -->
-        <link href="/static/migrator/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'migrator/css/bootstrap.min.css' %}" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="/static/migrator/signin.css" rel="stylesheet">
-
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="/static/migrator/js/ie-emulation-modes-warning.js"></script>
+        <link href="{% static 'migrator/signin.css' %}" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>

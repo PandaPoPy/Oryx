@@ -1,30 +1,31 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from migrator.forms import Local_Endpoint, Remote_Endpoint
 
 # Create your views here.
 
-def login(request):
-    #teste si formulaire a été envoyé
-    if len(request.POST)>0:
-        #teste si les paramètres attendus ont été transmis
-        if 'email' not in request.POST or 'password' not in request.POST:
-            error = "Veuillez entrer une adresse de courriel et un mot de passe."
-            return render_to_response('migrator/index.html', {'error': error})
-        else:
-            email = request.POST['email']
-            password = request.POST['password']
-            #teste si le mot de passe est le bon
-            if password != 'yop' or email != 'contact@example.com':
-                error = "Adresse email ou mot de passe erroné."
-                return render_to_response('migrator/index.html', {'error': error})
-            #tout est bon, on va sur la page suivante
-            else:
-                return HttpResponseRedirect(reverse('migrator:formulaire_serveur'))
-    #le formualaire n'a pas été envoyé
+def index(request):
+    return HttpResponseRedirect(reverse('migrator:localEndpoint'))
+
+
+def LocalEndpoint(request):
+    #Test if the form was sent
+    if request.method=="POST":
+        form = Local_Endpoint(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('migrator:remoteEndpoint'))
     else:
-        return render(request, 'migrator/index.html')
+        form = Local_Endpoint()
+        return render(request, 'migrator/localendpoint.html', {'form':form})
 
 
-def formulaire_serveur(request):
-    return render(request, 'migrator/formulaire_serveur.html')
+def RemoteEndpoint(request):
+    #Test if the form was sent
+    if request.method=="POST":
+        form = Remote_Endpoint(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('migrator: localEndpoint'))
+    else:
+        form = Remote_Endpoint()
+        return render(request, 'migrator/remoteendpoint.html', {'form':form})

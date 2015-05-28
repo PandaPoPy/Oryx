@@ -2,20 +2,21 @@
 
 {% block title %}Interface d'Administration{% endblock %}
 
-{% block bodyId %}Vos identifiants{% endblock %}
+{% block bodyId %}RemoteEndpoint{% endblock %}
 
 {% block content %}
 <div class="container">
-    <form method="post" action="login" class="form-signin">
-        <h2 class="form-signin-heading">Merci de renseigner ces détails de votre Serveur</h2>
+    <form method="post" action="RemoteEndpoint" class="form-signin">
         {% csrf_token %}
-        {% if error %}
+        <h2 class="form-signin-heading">Merci de renseigner ces détails de votre Serveur</h2>
+        {{ form.as_p }}
+        <!--{% if error %}
         <p class="error">{{error}}</p>
         {% endif %}
         <label for="host" class="sr-only">Votre Host : </label>
             <input type="text" name="host" placeholder="Ex : xxx" id="host" class="form-control" required autofocus/>
         <label for ="port">Votre Port : </label>
-            <input type="text" name="port" placeholder="Ex : yyy" id="port" class="form-control" required autofocus/>
+            <input type="text" name="port" placeholder="Ex : 143" id="port" class="form-control" required autofocus/>
         <label for="email">Login : </label>
             <input type="email" name="email" placeholder="Ex : contact@example.com" class="form-control" required autofocus/>
         <label for="password" class="sr-only">Votre Mot de passe : </label>
@@ -23,10 +24,10 @@
         <label for="ssl">SSL/TLS : </label>
             <input type="checkbox" name="ssl" value="ssl" id="ssl" class="form-control"/>
         <div class="checkbox">
-                <!--<label>
+                <label>
                     <input type="checkbox" value="remember-me"> Se Souvenir
-                </label>-->
-        </div>
+                </label>
+        </div>-->
         <button class="btn btn-lg btn-primary btn-block" type="submit">Validez</button>
     </form>
 </div>
