@@ -1,12 +1,14 @@
-from django import forms
+from django.forms import ModelForm
+from migrator.models import IMAPEndpoint
 
 
-class Local_Endpoint(forms.Form):
-    email=forms.EmailField(label='Email :')
-    password=forms.CharField(label='Password :', widget=forms.PasswordInput)
+class LocalEndpointForm(ModelForm):
+    class Meta:
+        model= IMAPEndpoint
+        fields = ['email', 'password']
 
     def clean(self):
-        cleaned_data = super(Local_Endpoint, self).clean()
+        cleaned_data = super(LocalEndpointForm, self).clean()
         email = cleaned_data.get("email")
         password = cleaned_data.get("password")
         #Verifie if the datas are ok
@@ -14,37 +16,25 @@ class Local_Endpoint(forms.Form):
             if password != 'yop' or email != 'contact@example.com':
                 raise forms.ValidationError("Email or password failed.")
 
-
         return cleaned_data
 
 
-class Remote_Endpoint(forms.Form):
-    host = forms.CharField(label='Your Host :')
-    port = forms.IntegerField(label='Your Port :')
-    email = forms.EmailField(label='Email :')
-    password = forms.CharField(label='Password :', widget=forms.PasswordInput)
-    #ssl=forms.ListField(label='Type of your SSL')
-    NONE = 'NO'
-    SSL_TLS = 'SSL'
-    START_TLS = 'START'
-    SSL_CHOICES = (
-        (NONE, 'None'),
-        (SSL_TLS, 'SSL/TLS'),
-        (START_TLS, 'STARTTLS'),
-    )
-    ssl = forms.ChoiceField(choices=SSL_CHOICES)
+class RemoteEndpointForm(ModelForm):
+    class Meta:
+        model= IMAPEndpoint
+        fields = ['email', 'password','host','port','encryption', 'origin_file']
 
     def clean(self):
-        cleaned_data = super(Remote_Endpoint, self).clean()
+        cleaned_data = super(RemoteEndpointForm, self).clean()
         host = cleaned_data.get("host")
         port = cleaned_data.get("port")
         email = cleaned_data.get("email")
         password = cleaned_data.get("password")
-        ssl = cleaned_data.get("ssl")
+        encryption = cleaned_data.get("enrcryption")
+        origin_file = cleaned_data.get("origin_file")
         #Verify if the datas are ok
         if email and password:
             if password != 'yop' or email != 'contact@example.com':
                 raise forms.ValidationError("Email or password failed.")
-
 
         return cleaned_data

@@ -5,7 +5,7 @@ from .models import IMAPEndpoint, Migration
 
 
 class IMAPEndpointAdmin(admin.ModelAdmin):
-    list_display = ('login', 'password', 'host','port', 'encryption','origin_file')
+    list_display = ('email', 'password', 'host','port', 'encryption','origin_file')
 
 class MigrationAdmin(admin.ModelAdmin):
     list_display = ('origin', 'target', 'creation_date','processing_date', 'completion_date')
