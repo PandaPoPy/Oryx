@@ -106,3 +106,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Cookies Age
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+DEFAULT_IMAP_SERVER='imap.example.com'
+
+from oryx.local_settings import *

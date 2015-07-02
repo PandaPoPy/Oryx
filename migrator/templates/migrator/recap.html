@@ -1,0 +1,46 @@
+{% extends "migrator/base.html" %}
+
+{% block title %}Interface d'Administration{% endblock %}
+
+{% block bodyId %}Summary{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if error %}
+    <p class="error">{{error}}</p>
+    {% endif %}
+    <h1>Migration IMAP</h1>
+    <label>Your IMAP origin: </label>
+        <p>{{ migration.origin }}</p>
+    <label>Your IMAP remote : </label>
+        <p>{{ migration.target }}</p>
+    <label>Created Date : </label>
+        <p>{{ migration.creation_date }}</p>
+    <label>Processing Date : </label>
+        <p>{{ migration.processing_date }}</p>
+    <label>End Date : </label>
+        <p>{{ migration.completion_date }}</p>
+    <h1>Local IMAP</h1>
+    <label>Your Email : </label>
+        <p>{{ migration.origin.email_imap }}</p>
+    <label>Your Host : </label>
+        <p>{{ migration.origin.host_imap }}</p>
+    <label>Your Port : </label>
+        <p>{{ migration.origin.port_imap }}</p>
+    <label>Your Encryption : </label>
+        <p>{{ migration.origin.encryption_imap }}</p>
+    <label>The Path : </label>
+        <p>{{ migration.origin.path }}</p>
+    <h1>Remote IMAP</h1>
+    <label>Your Email : </label>
+        <p>{{ migration.target.email_imap }}</p>
+    <label>Your Host : </label>
+        <p>{{ migration.target.host_imap }}</p>
+    <label>Your Port : </label>
+        <p>{{ migration.target.port_imap }}</p>
+    <label>Your Encryption : </label>
+        <p>{{ migration.target.encryption_imap }}</p>
+    <label>The Path : </label>
+        <p>{{ migration.target.path }}</p>
+</div>
+{% endblock %}

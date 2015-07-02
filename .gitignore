@@ -3,3 +3,4 @@ __pycache__
 *.pyc
 .idea
 *~
+oryx/local_settings.py
